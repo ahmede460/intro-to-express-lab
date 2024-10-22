@@ -64,7 +64,7 @@ app.get('/shoes', (request, response) => {
     let finalText = ""
     minPrice = request.query["min-price"];
     maxPrice = request.query["max-price"];
-    type = request.query["type"];
+    type = request.query["type"].toLowerCase();
     let searchedArray = shoes
     if (minPrice) {
         searchedArray = searchedArray.filter((item) => item.price >= minPrice);
@@ -79,9 +79,6 @@ app.get('/shoes', (request, response) => {
     for (const shoe of searchedArray) {
         finalText += `name: ${shoe.name}, type: ${shoe.type}, price: ${shoe.price}$<br>`
     }
-
-
-
 
     response.send(finalText);
 });
